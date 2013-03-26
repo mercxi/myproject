@@ -2,10 +2,20 @@
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
+          <% if user_signed_in? %>
+           <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to "Edit Info", edit_user_registration_path %>
+          <% else %>
+          <li class="<%= 'active' if current_page?(new_user_registration_path) %>"><%= link_to "Sign Up Now", new_user_registration_path %>
+            
+            <% end %>
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %>
           </li>
           <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
-          <li><%= link_to "Login", '' %></li>
+            <% if user_signed_in? %>  
+          <li class="<%= 'active' if current_page?(destroy_user_session_path) %>"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+          <li class="<%= 'active' if current_page?(new_user_session_path) %>"><%= link_to "Login", new_user_session_path %></li>
+            <% end %>
         </ul>
         <h3 class="muted">HOWTO's & HOMEMADE ITEMS</h3>
       </div>
