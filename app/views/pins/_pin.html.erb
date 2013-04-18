@@ -1,5 +1,7 @@
  <div class="box"> 
-  	<%= image_tag pin.image(:medium) %>
+  	<%= link_to (image_tag pin.image(:medium)), pin %>
+    <p class = "title">
+      <%= pin.title %>
   	<p class="description">
     <%= pin.description %>
 	</p>
@@ -9,8 +11,9 @@
 		</strong>
 	</p>
     <%= link_to 'Show', pin %>
-    <% if current_user == pin.user %>
+    
    	<p>	
+      <% if current_user == pin.user %>
     	<%= link_to 'Edit', edit_pin_path(pin) %>
   	    <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %>
 	</p>
